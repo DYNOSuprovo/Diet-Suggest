@@ -8,6 +8,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 from concurrent.futures import ThreadPoolExecutor
+from sentence_transformers import SentenceTransformer  # 👈 Important patch
 
 # Load .env keys
 load_dotenv()
@@ -18,11 +19,13 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 os.environ["GOOGLE_API_KEY"] = GEMINI_API_KEY
 llm_gemini = GoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=GEMINI_API_KEY)
 
-# VectorDB + Embeddings
-embedding = HuggingFaceEmbeddings(
-    model_name="all-MiniLM-L6-v2",
-    model_kwargs={"device": "cpu"}
-)
+# VectorDB + Embeddings with patch to fix meta tensor error
+model = SentenceTransformer("all-MiniLM-L6-v2")
+model.to("cpu")
+
+embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={"device": "cpu"})
+embedding.client = model
+
 db = Chroma(persist_directory="db", embedding_function=embedding)
 
 # RAG Prompt
@@ -100,7 +103,6 @@ if query.lower() in greetings:
     st.success("✅ Final Diet Plan")
     st.markdown("Bonjour, madame/monsieur! I am your diet planning assistant, created by the esteemed Lord d'Artagnan. 🤖\n\nHow may I assist you today?")
     st.stop()
-
 
 # Process Query
 if st.button("🔍 Get Diet Plan") and query:
