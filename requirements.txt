@@ -1,0 +1,14 @@
+streamlit
+openai
+python-dotenv
+langchain
+langchain-google-genai
+chromadb
+sentence-transformers
+tqdm
+typing-extensions
+concurrent-log-handler
+torch
+transformers
+pypdf
+langchain-community
