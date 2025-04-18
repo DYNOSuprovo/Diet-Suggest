@@ -7,8 +7,9 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
-from concurrent.futures import ThreadPoolExecutor
-from sentence_transformers import SentenceTransformer  # 👈 Important patch
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from sentence_transformers import SentenceTransformer  # Important patch
+import asyncio
 
 # Load .env keys
 load_dotenv()
@@ -30,13 +31,24 @@ db = Chroma(persist_directory="db", embedding_function=embedding)
 
 # RAG Prompt
 diet_prompt = PromptTemplate.from_template("""
+You are a nutrition assistant helping Indian users make healthy food choices.
+
 Context:
 {context}
 
 User Query:
 {question}
 
-Generate a simple and practical food suggestion suited for Indian users.
+Instructions:
+- Suggest **practical**, **affordable**, and **region-friendly** Indian foods.
+- If the user mentions a condition (e.g., diabetes, BP), tailor accordingly.
+- Use simple words and avoid medical jargon.
+- Keep suggestions short and bullet-pointed.
+
+Output Format:
+- Meal: [Breakfast/Lunch/Dinner]
+- Foods: [List items]
+- Notes: [Any condition-based warning or tip]
 """)
 
 qa_chain = RetrievalQA.from_chain_type(
@@ -48,22 +60,45 @@ qa_chain = RetrievalQA.from_chain_type(
 
 # Merge Prompt
 merge_prompt = PromptTemplate.from_template("""
-You are a diet planning assistant created by Lord d'Artagnan. Here is the RAG-based answer and additional suggestions.
+You are a personalized Indian diet planner created by Lord d'Artagnan. Your goal is to combine AI-generated responses into one clear, practical diet plan for Indian users.
 
-🔹 RAG Answer:
+User Question: (Implied from RAG and LLM responses)
+
+🔹 RAG-Based Core Recommendation:
 {rag}
 
-🔹 Other Suggestions:
+🔹 Additional Suggestions from other expert AIs:
+- LLaMA 3:
 {llama}
+
+- Mixtral:
 {mixtral}
+
+- Gemma:
 {gemma}
 
-Refine and merge these into ONE practical diet plan with clarity. Prioritize RAG.
-Also handle greetings like hi, hello by introducing yourself and prompting the user politely.
+Instructions:
+1. Read and analyze all the suggestions above.
+2. Prioritize the **RAG-based suggestion** first — it's backed by trusted data.
+3. Use useful ideas from other models if they add variety or clarity.
+4. Remove any conflicting advice — prefer simplicity over complexity.
+5. Ensure cultural and health relevance for Indian users.
+6. Handle greetings like "hi", "hello", "namaste" gracefully by introducing yourself and asking how you can help.
+
+Output Format:
+👋 Greeting (if applicable)
+
+📌 Final Diet Plan:
+- Breakfast: ...
+- Lunch: ...
+- Dinner: ...
+- Tips: (Optional health or diet advice)
+
+Keep it concise, friendly, and clear.
 """)
 
-# Groq API call
-def groq_diet_answer(model_name, query):
+# Groq API call (asynchronous)
+async def groq_diet_answer(model_name, query):
     url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
@@ -78,16 +113,16 @@ def groq_diet_answer(model_name, query):
     response.raise_for_status()
     return response.json()['choices'][0]['message']['content']
 
-# Cached parallel Groq model fetch
-@st.cache_data
-def cached_groq_answers(query):
-    with ThreadPoolExecutor() as executor:
-        futures = {
-            "llama": executor.submit(groq_diet_answer, "llama-3.3-70b-versatile", query),
-            "mixtral": executor.submit(groq_diet_answer, "mistral-saba-24b", query),
-            "gemma": executor.submit(groq_diet_answer, "gemma2-9b-it", query),
-        }
-        return {k: f.result() for k, f in futures.items()}
+# Fetch multiple answers asynchronously
+async def fetch_groq_answers(query):
+    models = ["llama-3.3-70b-versatile", "mistral-saba-24b", "gemma2-9b-it"]
+    tasks = [groq_diet_answer(model, query) for model in models]
+    responses = await asyncio.gather(*tasks)
+    return {
+        "llama": responses[0],
+        "mixtral": responses[1],
+        "gemma": responses[2]
+    }
 
 # Streamlit UI
 st.set_page_config(page_title="🍱 Diet Advisor", layout="centered")
@@ -95,7 +130,7 @@ st.title("🥗 Personalized Diet Recommendation")
 st.markdown("Ask anything related to your diet and health.")
 
 query = st.text_input("📥 Enter your diet-related question:", placeholder="E.g. I'm diabetic. What should I eat in lunch?")
-use_llms = st.toggle("🔄 Include expanded suggestions", value=True)
+use_llms = st.checkbox("🔄 Include expanded suggestions", value=True)
 
 # Greetings handling
 greetings = ["hi", "hello", "hey", "namaste", "yo"]
@@ -111,7 +146,8 @@ if st.button("🔍 Get Diet Plan") and query:
 
     if use_llms:
         with st.spinner("⏳ Gathering additional suggestions from Groq..."):
-            groq_ans = cached_groq_answers(query)
+            # Fetch additional suggestions asynchronously
+            groq_ans = asyncio.run(fetch_groq_answers(query))
     else:
         groq_ans = {"llama": "", "mixtral": "", "gemma": ""}
 
