@@ -1,15 +1,17 @@
 # 🥗 Diet-Suggest — Your AI-Powered Dietitian
 
 ![Diet-Suggest Logo](assets/logo.png)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Streamlit-%E2%9D%A4-red?logo=streamlit"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?logo=open-source-initiative"/>
+  <img src="https://img.shields.io/badge/Gemini-Powered-blueviolet?logo=google"/>
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/LangChain-Enabled-yellowgreen?logo=chainlink"/>
+  <img src="https://img.shields.io/badge/Groq-Compatible-orange?logo=lightning"/>
+  <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-critical?logo=databricks"/>
+</p>
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-%E2%9D%A4-red)
-![License: MIT](https://img.shields.io/badge/License-MIT-green)
-![Gemini AI](https://img.shields.io/badge/Gemini-Powered-blueviolet)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
-![LangChain](https://img.shields.io/badge/LangChain-Enabled-yellowgreen)
-![Groq](https://img.shields.io/badge/Groq-Compatible-orange)
-![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-critical)
 
 
 **Diet-Suggest** is an AI-based food recommendation app built using **Streamlit**, **LangChain**, and **Gemini**. It delivers personalized diet plans tailored to your medical conditions, preferences, and location — using smart retrieval and powerful LLMs.
