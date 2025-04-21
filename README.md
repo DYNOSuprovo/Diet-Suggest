@@ -1,5 +1,7 @@
 # 🥗 Diet-Suggest — Your AI-Powered Dietitian
 
+![Diet-Suggest Logo](assets/logo.png)
+
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-%E2%9D%A4-red)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green)
@@ -8,6 +10,7 @@
 ![LangChain](https://img.shields.io/badge/LangChain-Enabled-yellowgreen)
 ![Groq](https://img.shields.io/badge/Groq-Compatible-orange)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-critical)
+
 
 **Diet-Suggest** is an AI-based food recommendation app built using **Streamlit**, **LangChain**, and **Gemini**. It delivers personalized diet plans tailored to your medical conditions, preferences, and location — using smart retrieval and powerful LLMs.
 
