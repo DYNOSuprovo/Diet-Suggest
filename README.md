@@ -39,15 +39,11 @@
 
 ## 🧠 Architecture Overview
 
-```mermaid
-flowchart TD
-    A[User Input] --> B[Query Processor]
-    B --> C{Medical Conditions?}
-    C --> D[Vector DB (FAISS/Chroma)]
-    D --> E[LangChain + Gemini]
-    E --> F[Smart Response]
-    F --> G[Streamlit UI]
-```
+### Diagram
+![Architecture](assets/architecture.png)
+
+Alternatively, you can render the diagram as a static image and store it in the `/assets/` folder.
+
 
 ---
 
