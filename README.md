@@ -1,4 +1,11 @@
-# 🥗 Diet-Suggest — Your AI-Powered Dietitian
+
+<p align="center">
+  <img src="assets/logo.png" alt="Diet-Suggest Logo" width="200"/>
+</p>
+
+<h1 align="center">🥗 Diet-Suggest — Your AI-Powered Dietitian</h1>
+
+<p align="center"><em>Eat smart, live strong — backed by AI.</em></p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white" height="32"/>
@@ -11,43 +18,35 @@
   <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-critical?logo=databricks" height="32"/>
 </p>
 
-
-
-**Diet-Suggest** is an AI-based food recommendation app built using **Streamlit**, **LangChain**, and **Gemini**. It delivers personalized diet plans tailored to your medical conditions, preferences, and location — using smart retrieval and powerful LLMs.
-
-> 🚀 *"Eat smart, live strong — backed by AI."*
-
 ---
 
 ## 🌟 Key Features
 
 - 🧠 **LLM-Driven Diet Plans**  
-  Get real-time diet suggestions via Gemini using RAG (Retrieval-Augmented Generation).
+  Personalized diet suggestions using Gemini with RAG (Retrieval-Augmented Generation).
 
 - ❤️ **Health-Aware Recommendations**  
-  Adaptable for conditions like diabetes, high BP, weight goals, and more.
+  Handles diabetes, hypertension, weight goals, and other medical conditions.
 
 - 📍 **Location-Aware Output**  
-  Offers dietary suggestions based on your city/region.
+  Recommends diet plans relevant to your city or region.
 
 - 🗂 **Embedded FAQ Matching**  
-  Built-in embeddings to smartly match your queries with pre-trained diet info.
+  Uses vector embeddings to intelligently match queries to diet facts.
 
 - 🐳 **Docker & DevContainer Support**  
-  Run it anywhere — even in isolated environments.
+  Works seamlessly in isolated environments.
 
 - ⚡ **Groq-Compatible**  
-  Future-ready for Groq and blazing-fast inference.
+  Optimized for future high-speed inference.
 
 ---
 
 ## 🧠 Architecture Overview
 
-### Diagram
-![Architecture](assets/architecture.png)
-
-Alternatively, you can render the diagram as a static image and store it in the `/assets/` folder.
-
+<p align="center">
+  <img src="assets/architecture.png" alt="App Architecture" width="600"/>
+</p>
 
 ---
 
@@ -55,19 +54,20 @@ Alternatively, you can render the diagram as a static image and store it in the 
 
 ```
 Diet-Suggest/
-├── streamlit_app.py          # 🎛️ Main Streamlit interface
-├── build_vector_db.py        # 🧠 Vector DB builder for FAQs
-├── requirements.txt          # 📦 Python dependencies
-├── Dockerfile                # 🐳 Docker container setup
-├── .devcontainer/            # ⚙️ Dev container for VS Code
-└── README.md                 # 📖 You're here!
+├── streamlit_app.py         # 🎛️ Main Streamlit interface
+├── build_vector_db.py       # 🧠 Builds the Vector DB (FAQs, Diet KB)
+├── requirements.txt         # 📦 Python dependencies
+├── Dockerfile               # 🐳 Docker container config
+├── .devcontainer/           # ⚙️ Dev container (VS Code)
+├── assets/                  # 🖼️ Logos and diagrams
+└── README.md                # 📖 This file
 ```
 
 ---
 
 ## ⚙️ Setup Guide
 
-### 🔁 1. Clone the Repo
+### 🔁 1. Clone the Repository
 
 ```bash
 git clone https://github.com/DYNOSuprovo/Diet-Suggest.git
@@ -76,87 +76,91 @@ cd Diet-Suggest
 
 ### 📦 2. Install Dependencies
 
+Make sure you have **Python 3.9+** installed.
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 🔑 3. Add Your API Keys
+### 🔑 3. Configure API Keys
 
-Create a `.env` file:
+Create a `.env` file in the root directory and add your keys:
 
 ```env
-GEMINI_API_KEY=your_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+# Optional:
+# HUGGINGFACE_API_KEY=your_hf_key
+# OPENAI_API_KEY=your_openai_key
+# GROQ_API_KEY=your_groq_key
 ```
 
-(Optional: Add HuggingFace/OpenAI/Groq keys if used)
-
----
-
-### 🧠 4. Build Vector DB (FAQ + Diet Knowledge)
+### 🧠 4. Build the Vector Database
 
 ```bash
 python build_vector_db.py
 ```
 
----
-
-### ▶️ 5. Run the Streamlit App
+### ▶️ 5. Launch the Streamlit App
 
 ```bash
 streamlit run streamlit_app.py
 ```
 
-You’ll be able to:
+You can now:
 - Select medical conditions
-- Choose location
+- Enter your city
 - Ask diet-related questions
-- Get instant AI-driven suggestions 💡
+- Get instant AI-powered suggestions 💡
 
 ---
 
 ## 🐳 Docker Instructions
 
-### 🔧 Build & Run Locally
+### 🔧 Build & Run with Docker
+
+Ensure Docker is installed, then:
 
 ```bash
 docker build -t diet-suggest .
 docker run -p 8501:8501 diet-suggest
 ```
 
-> App will be available at `http://localhost:8501`
+Visit the app at: [http://localhost:8501](http://localhost:8501)
 
 ---
 
-## 📸 Screenshots (Optional)
+## 📸 Screenshots
 
-> *(Add screenshots of Streamlit interface once finalized)*  
-> Example:
-> ![Homepage Preview](assets/preview.png)
+_Include one or more screenshots of the app UI here for better context._
+
+```
+assets/preview.png
+```
 
 ---
 
 ## 🤝 Contribution
 
-Pull requests and suggestions are welcome!  
-If you're proposing major changes, kindly open an issue to discuss it first.
+Contributions are welcome!  
+If you have new ideas or major changes, open an issue first to discuss.
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+Licensed under the [MIT License](LICENSE).
 
 ---
 
 ## 🔗 Useful Links
 
-- [Streamlit Docs](https://docs.streamlit.io/)
+- [Streamlit Documentation](https://docs.streamlit.io/)
 - [LangChain](https://docs.langchain.com/)
-- [FAISS](https://github.com/facebookresearch/faiss)
+- [FAISS GitHub](https://github.com/facebookresearch/faiss)
 - [ChromaDB](https://www.trychroma.com/)
-- [Gemini API](https://cloud.google.com/vertex-ai/docs/generative-ai/overview)
+- [Gemini API](https://ai.google.dev/)
 - [Groq](https://groq.com/)
 
 ---
 
-*Made with 💡 by Suprovo (LDrago) — powering healthy lives with AI.*
+<p align="center"><em>Crafted with 💡 by Suprovo (a.k.a. LDrago) — Empowering healthy lives with AI.</em></p>
