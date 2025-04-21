@@ -27,7 +27,7 @@
 
 ## 🧠 Architecture Overview
 
-'''
+```mermaid
 flowchart TD
     A[User Input] --> B[Query Processor]
     B --> C{Medical\nConditions?}
@@ -35,7 +35,7 @@ flowchart TD
     D --> E[LangChain + Gemini]
     E --> F[Smart Response]
     F --> G[Streamlit UI]
-'''
+```
 
 ---
 
