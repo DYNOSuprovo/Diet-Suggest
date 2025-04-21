@@ -1,5 +1,14 @@
 # 🥗 Diet-Suggest — Your AI-Powered Dietitian
 
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-%E2%9D%A4-red)
+![License: MIT](https://img.shields.io/badge/License-MIT-green)
+![Gemini AI](https://img.shields.io/badge/Gemini-Powered-blueviolet)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
+![LangChain](https://img.shields.io/badge/LangChain-Enabled-yellowgreen)
+![Groq](https://img.shields.io/badge/Groq-Compatible-orange)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-critical)
+
 **Diet-Suggest** is an AI-based food recommendation app built using **Streamlit**, **LangChain**, and **Gemini**. It delivers personalized diet plans tailored to your medical conditions, preferences, and location — using smart retrieval and powerful LLMs.
 
 > 🚀 *"Eat smart, live strong — backed by AI."*
@@ -22,6 +31,9 @@
 
 - 🐳 **Docker & DevContainer Support**  
   Run it anywhere — even in isolated environments.
+
+- ⚡ **Groq-Compatible**  
+  Future-ready for Groq and blazing-fast inference.
 
 ---
 
@@ -76,7 +88,7 @@ Create a `.env` file:
 GEMINI_API_KEY=your_key_here
 ```
 
-(Optional: Add HuggingFace/OpenAI keys if used)
+(Optional: Add HuggingFace/OpenAI/Groq keys if used)
 
 ---
 
@@ -141,7 +153,9 @@ This project is licensed under the **MIT License**.
 - [Streamlit Docs](https://docs.streamlit.io/)
 - [LangChain](https://docs.langchain.com/)
 - [FAISS](https://github.com/facebookresearch/faiss)
+- [ChromaDB](https://www.trychroma.com/)
 - [Gemini API](https://cloud.google.com/vertex-ai/docs/generative-ai/overview)
+- [Groq](https://groq.com/)
 
 ---
 
