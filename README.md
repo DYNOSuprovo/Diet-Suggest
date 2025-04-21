@@ -1,15 +1,14 @@
 # 🥗 Diet-Suggest — Your AI-Powered Dietitian
 
-![Diet-Suggest Logo](assets/logo.png)
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Streamlit-%E2%9D%A4-red?logo=streamlit"/>
-  <img src="https://img.shields.io/badge/License-MIT-green?logo=open-source-initiative"/>
-  <img src="https://img.shields.io/badge/Gemini-Powered-blueviolet?logo=google"/>
-  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white"/>
-  <img src="https://img.shields.io/badge/LangChain-Enabled-yellowgreen?logo=chainlink"/>
-  <img src="https://img.shields.io/badge/Groq-Compatible-orange?logo=lightning"/>
-  <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-critical?logo=databricks"/>
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python&logoColor=white" height="32"/>
+  <img src="https://img.shields.io/badge/Streamlit-%E2%9D%A4-red?logo=streamlit" height="32"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?logo=open-source-initiative" height="32"/>
+  <img src="https://img.shields.io/badge/Gemini-Powered-blueviolet?logo=google" height="32"/>
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white" height="32"/>
+  <img src="https://img.shields.io/badge/LangChain-Enabled-yellowgreen?logo=chainlink" height="32"/>
+  <img src="https://img.shields.io/badge/Groq-Compatible-orange?logo=lightning" height="32"/>
+  <img src="https://img.shields.io/badge/ChromaDB-Vector%20DB-critical?logo=databricks" height="32"/>
 </p>
 
 
