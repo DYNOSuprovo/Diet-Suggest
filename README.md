@@ -42,7 +42,7 @@
 ```mermaid
 flowchart TD
     A[User Input] --> B[Query Processor]
-    B --> C{Medical\nConditions?}
+    B --> C{Medical Conditions?}
     C --> D[Vector DB (FAISS/Chroma)]
     D --> E[LangChain + Gemini]
     E --> F[Smart Response]
