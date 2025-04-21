@@ -1,8 +1,4 @@
 
-<p align="center">
-  <img src="assets/logo.png" alt="Diet-Suggest Logo" width="200"/>
-</p>
-
 <h1 align="center">🥗 Diet-Suggest — Your AI-Powered Dietitian</h1>
 
 <p align="center"><em>Eat smart, live strong — backed by AI.</em></p>
@@ -41,13 +37,6 @@
   Optimized for future high-speed inference.
 
 ---
-
-## 🧠 Architecture Overview
-
-<p align="center">
-  <img src="assets/architecture.png" alt="App Architecture" width="600"/>
-</p>
-
 ---
 
 ## 📁 Directory Structure
