@@ -12,3 +12,6 @@ torch
 transformers
 pypdf
 langchain-community
+requests
+
+
