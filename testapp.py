@@ -2,14 +2,12 @@ import streamlit as st
 import os
 import requests
 from dotenv import load_dotenv
-# Corrected imports from langchain_community
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 from concurrent.futures import ThreadPoolExecutor
-# sentence_transformers is used for the underlying model, keep this import
 from sentence_transformers import SentenceTransformer
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
@@ -20,8 +18,6 @@ import google.generativeai as genai
 import logging # Add logging for better error inspection
 import string # Import string module for punctuation removal
 import re # Import regex for regional preference extraction
-
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.info("Application started.")
 
