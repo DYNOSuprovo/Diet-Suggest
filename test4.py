@@ -20,18 +20,11 @@ import google.generativeai as genai
 import logging # Add logging for better error inspection
 import string # Import string module for punctuation removal
 import re # Import regex for regional preference extraction
-
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logging.info("Application started.")
-
-# Load environment variables
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
-# --- API Key Checks and Configuration ---
-# Check if the Gemini API key is available, otherwise stop the app.
 if not GEMINI_API_KEY:
     st.error("GEMINI_API_KEY not found. Please set it in your .env file.")
     logging.error("GEMINI_API_KEY not found.")
