@@ -13,5 +13,4 @@ transformers
 pypdf
 langchain-community
 requests
-
-
+google-generativeai
